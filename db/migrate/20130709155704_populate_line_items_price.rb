@@ -1,12 +1,10 @@
 class PopulateLineItemsPrice < ActiveRecord::Migration
-  def up
-    LineItems.all.each do |lineitem|
-      product_price = Product.price.where(:product_id => lineitem.product_id)
-      lineitem.price = product_price
-      lineitem.save
+  def self.up
+    LineItem.all.each do |lineitem|
+      lineitem.update_attributes :price => lineitem.product.price
     end
   end
 
-  def down
+  def self.down
   end
 end
