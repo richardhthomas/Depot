@@ -5,3 +5,8 @@ $('#cart').html('<%= escape_javascript(render(@cart)) %>');
 <% end %>
 
 $("#current_item").hide().fadeIn("slow");
+
+// This tests for the existence of the element with id 'notice' - length will return false or zero if it doesn't exist. Trying to hid a non-existent element would cause a crash
+if ($('#notice').length) {
+	$('#notice').hide();
+}
